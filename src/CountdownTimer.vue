@@ -2,7 +2,7 @@
   <div
     class="flex flex-col items-center justify-center h-screen bg-spring-blue text-spring-yellow p-6 text-center"
   >
-    <h1 class="text-3xl mb-4 md:mt-0 -mt-64 text-[#C4DC46]">Faltan</h1>
+    <h1 class="text-3xl mb-4 md:mt-0 -mt-48 text-[#C4DC46]">Faltan</h1>
     <p class="text-6xl font-bold">{{ countdown }}</p>
 
     <transition name="fade" mode="out-in">
@@ -13,6 +13,7 @@
         para {{ currentElement }}
       </h1>
     </transition>
+    <Play />
     <Twitter />
 
     <span class="md:mt-64 mt-32">
@@ -40,11 +41,13 @@
 import { defineComponent, onMounted, ref, onUnmounted } from 'vue'
 import { useCountdown } from './useCountdown'
 import Twitter from './Twitter.vue'
+import Play from './Play.vue'
 
 export default defineComponent({
   name: 'CountdownTimer',
   components: {
     Twitter,
+    Play,
   },
   setup() {
     const targetDate = new Date('2024-01-14T14:00:00-06:00')

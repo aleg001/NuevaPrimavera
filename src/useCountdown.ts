@@ -24,7 +24,9 @@ export function useCountdown(targetDate: Date): { countdown: Ref<string>, startC
 
   function startCountdown() {
     updateCountdown(); // Initialize countdown
+    setInterval(updateCountdown, 1000); // Update countdown every second
   }
+  
 
   return { countdown, startCountdown };
 }

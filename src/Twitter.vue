@@ -1,26 +1,24 @@
 <template>
-  <button class="tweet-button mt-12" @click="tweet">Compartir en X</button>
+  <button class="tweet-button mt-5" @click="tweet">Compartir en X</button>
 </template>
-
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useCountdown } from './useCountdown'
 
 export default defineComponent({
   name: 'TweetButton',
   setup() {
-    const targetDate = new Date('2024-01-14T14:00:00-06:00')
-    const { countdown } = useCountdown(targetDate)
-
     function tweet() {
-      // Assume countdown is in the format "Xd Yh Zm As" where X, Y, Z, A are numbers
-      const timeParts = countdown.value.match(/(\d+)d (\d+)h/)
-      let tweetTime = ''
-      if (timeParts) {
-        tweetTime = `Faltan ${timeParts[1]} días y ${timeParts[2]} horas`
-      }
+      const targetDate = new Date('2024-01-14T14:00:00-06:00')
+      const now = new Date()
+      const distance = targetDate.getTime() - now.getTime()
 
-      const tweetMessage = `${tweetTime} para la #NuevaPrimavera @msemillagt`
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      )
+
+      const tweetTime = `Faltan ${days} días y ${hours} horas`
+      const tweetMessage = `${tweetTime} para la #NuevaPrimavera @msemillagt. Creado por @aleg0mez_001. https://t.ly/yHlYx`
       const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
         tweetMessage
       )}`
